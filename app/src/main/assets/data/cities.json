@@ -1,0 +1,491 @@
+{
+  "version": 1,
+  "regions": [
+    {
+      "id": "tanger-tetouan-al-hoceima",
+      "nom": "Tanger-Tétouan-Al Hoceïma",
+      "villes": [
+        {
+          "id": "tanger",
+          "nom": "Tanger",
+          "latitude": 35.7595,
+          "longitude": -5.834
+        },
+        {
+          "id": "tetouan",
+          "nom": "Tétouan",
+          "latitude": 35.5785,
+          "longitude": -5.3684
+        },
+        {
+          "id": "martil",
+          "nom": "Martil",
+          "latitude": 35.6167,
+          "longitude": -5.275
+        },
+        {
+          "id": "mdiq",
+          "nom": "M'Diq",
+          "latitude": 35.6858,
+          "longitude": -5.3253
+        },
+        {
+          "id": "fnideq",
+          "nom": "Fnideq",
+          "latitude": 35.8497,
+          "longitude": -5.3575
+        },
+        {
+          "id": "chefchaouen",
+          "nom": "Chefchaouen",
+          "latitude": 35.1688,
+          "longitude": -5.2636
+        },
+        {
+          "id": "larache",
+          "nom": "Larache",
+          "latitude": 35.1932,
+          "longitude": -6.1557
+        },
+        {
+          "id": "ksar-el-kebir",
+          "nom": "Ksar El Kébir",
+          "latitude": 35.0017,
+          "longitude": -5.905
+        },
+        {
+          "id": "asilah",
+          "nom": "Asilah",
+          "latitude": 35.465,
+          "longitude": -6.034
+        },
+        {
+          "id": "al-hoceima",
+          "nom": "Al Hoceïma",
+          "latitude": 35.2517,
+          "longitude": -3.9372
+        },
+        {
+          "id": "ouazzane",
+          "nom": "Ouazzane",
+          "latitude": 34.7967,
+          "longitude": -5.5833
+        }
+      ]
+    },
+    {
+      "id": "oriental",
+      "nom": "L'Oriental",
+      "villes": [
+        {
+          "id": "oujda",
+          "nom": "Oujda",
+          "latitude": 34.6814,
+          "longitude": -1.9086
+        },
+        {
+          "id": "nador",
+          "nom": "Nador",
+          "latitude": 35.1681,
+          "longitude": -2.9335
+        },
+        {
+          "id": "berkane",
+          "nom": "Berkane",
+          "latitude": 34.92,
+          "longitude": -2.32
+        },
+        {
+          "id": "taourirt",
+          "nom": "Taourirt",
+          "latitude": 34.4073,
+          "longitude": -2.8973
+        },
+        {
+          "id": "guercif",
+          "nom": "Guercif",
+          "latitude": 34.2257,
+          "longitude": -3.3536
+        },
+        {
+          "id": "driouch",
+          "nom": "Driouch",
+          "latitude": 34.9769,
+          "longitude": -3.3906
+        },
+        {
+          "id": "figuig",
+          "nom": "Figuig",
+          "latitude": 32.1092,
+          "longitude": -1.2289
+        }
+      ]
+    },
+    {
+      "id": "fes-meknes",
+      "nom": "Fès-Meknès",
+      "villes": [
+        {
+          "id": "fes",
+          "nom": "Fès",
+          "latitude": 34.0331,
+          "longitude": -5.0003
+        },
+        {
+          "id": "meknes",
+          "nom": "Meknès",
+          "latitude": 33.8935,
+          "longitude": -5.5473
+        },
+        {
+          "id": "taza",
+          "nom": "Taza",
+          "latitude": 34.21,
+          "longitude": -4.01
+        },
+        {
+          "id": "ifrane",
+          "nom": "Ifrane",
+          "latitude": 33.5228,
+          "longitude": -5.11
+        },
+        {
+          "id": "sefrou",
+          "nom": "Sefrou",
+          "latitude": 33.8305,
+          "longitude": -4.8353
+        },
+        {
+          "id": "azrou",
+          "nom": "Azrou",
+          "latitude": 33.4342,
+          "longitude": -5.2214
+        },
+        {
+          "id": "el-hajeb",
+          "nom": "El Hajeb",
+          "latitude": 33.6928,
+          "longitude": -5.3711
+        },
+        {
+          "id": "taounate",
+          "nom": "Taounate",
+          "latitude": 34.5358,
+          "longitude": -4.64
+        }
+      ]
+    },
+    {
+      "id": "rabat-sale-kenitra",
+      "nom": "Rabat-Salé-Kénitra",
+      "villes": [
+        {
+          "id": "rabat",
+          "nom": "Rabat",
+          "latitude": 34.0209,
+          "longitude": -6.8416
+        },
+        {
+          "id": "sale",
+          "nom": "Salé",
+          "latitude": 34.0331,
+          "longitude": -6.7985
+        },
+        {
+          "id": "kenitra",
+          "nom": "Kénitra",
+          "latitude": 34.261,
+          "longitude": -6.5802
+        },
+        {
+          "id": "temara",
+          "nom": "Témara",
+          "latitude": 33.9287,
+          "longitude": -6.9063
+        },
+        {
+          "id": "skhirat",
+          "nom": "Skhirat",
+          "latitude": 33.8528,
+          "longitude": -7.0322
+        },
+        {
+          "id": "khemisset",
+          "nom": "Khémisset",
+          "latitude": 33.824,
+          "longitude": -6.0663
+        },
+        {
+          "id": "sidi-kacem",
+          "nom": "Sidi Kacem",
+          "latitude": 34.2214,
+          "longitude": -5.7078
+        },
+        {
+          "id": "sidi-slimane",
+          "nom": "Sidi Slimane",
+          "latitude": 34.2648,
+          "longitude": -5.9255
+        }
+      ]
+    },
+    {
+      "id": "beni-mellal-khenifra",
+      "nom": "Béni Mellal-Khénifra",
+      "villes": [
+        {
+          "id": "beni-mellal",
+          "nom": "Béni Mellal",
+          "latitude": 32.3373,
+          "longitude": -6.3498
+        },
+        {
+          "id": "khouribga",
+          "nom": "Khouribga",
+          "latitude": 32.8811,
+          "longitude": -6.9063
+        },
+        {
+          "id": "khenifra",
+          "nom": "Khénifra",
+          "latitude": 32.9394,
+          "longitude": -5.6675
+        },
+        {
+          "id": "fquih-ben-salah",
+          "nom": "Fquih Ben Salah",
+          "latitude": 32.5,
+          "longitude": -6.6833
+        },
+        {
+          "id": "azilal",
+          "nom": "Azilal",
+          "latitude": 31.9667,
+          "longitude": -6.5667
+        }
+      ]
+    },
+    {
+      "id": "casablanca-settat",
+      "nom": "Casablanca-Settat",
+      "villes": [
+        {
+          "id": "casablanca",
+          "nom": "Casablanca",
+          "latitude": 33.5731,
+          "longitude": -7.5898
+        },
+        {
+          "id": "mohammedia",
+          "nom": "Mohammédia",
+          "latitude": 33.6866,
+          "longitude": -7.383
+        },
+        {
+          "id": "el-jadida",
+          "nom": "El Jadida",
+          "latitude": 33.2316,
+          "longitude": -8.5007
+        },
+        {
+          "id": "settat",
+          "nom": "Settat",
+          "latitude": 33.001,
+          "longitude": -7.6166
+        },
+        {
+          "id": "berrechid",
+          "nom": "Berrechid",
+          "latitude": 33.2655,
+          "longitude": -7.5875
+        },
+        {
+          "id": "benslimane",
+          "nom": "Benslimane",
+          "latitude": 33.6122,
+          "longitude": -7.1211
+        },
+        {
+          "id": "sidi-bennour",
+          "nom": "Sidi Bennour",
+          "latitude": 32.65,
+          "longitude": -8.4333
+        }
+      ]
+    },
+    {
+      "id": "marrakech-safi",
+      "nom": "Marrakech-Safi",
+      "villes": [
+        {
+          "id": "marrakech",
+          "nom": "Marrakech",
+          "latitude": 31.6295,
+          "longitude": -7.9811
+        },
+        {
+          "id": "safi",
+          "nom": "Safi",
+          "latitude": 32.2994,
+          "longitude": -9.2372
+        },
+        {
+          "id": "essaouira",
+          "nom": "Essaouira",
+          "latitude": 31.5085,
+          "longitude": -9.7595
+        },
+        {
+          "id": "el-kelaa-des-sraghna",
+          "nom": "El Kelâa des Sraghna",
+          "latitude": 32.0481,
+          "longitude": -7.4083
+        },
+        {
+          "id": "youssoufia",
+          "nom": "Youssoufia",
+          "latitude": 32.2464,
+          "longitude": -8.5294
+        },
+        {
+          "id": "chichaoua",
+          "nom": "Chichaoua",
+          "latitude": 31.5333,
+          "longitude": -8.7667
+        }
+      ]
+    },
+    {
+      "id": "draa-tafilalet",
+      "nom": "Drâa-Tafilalet",
+      "villes": [
+        {
+          "id": "errachidia",
+          "nom": "Errachidia",
+          "latitude": 31.9314,
+          "longitude": -4.4244
+        },
+        {
+          "id": "ouarzazate",
+          "nom": "Ouarzazate",
+          "latitude": 30.9335,
+          "longitude": -6.937
+        },
+        {
+          "id": "midelt",
+          "nom": "Midelt",
+          "latitude": 32.6852,
+          "longitude": -4.7451
+        },
+        {
+          "id": "tinghir",
+          "nom": "Tinghir",
+          "latitude": 31.5147,
+          "longitude": -5.5328
+        },
+        {
+          "id": "zagora",
+          "nom": "Zagora",
+          "latitude": 30.3324,
+          "longitude": -5.8384
+        }
+      ]
+    },
+    {
+      "id": "souss-massa",
+      "nom": "Souss-Massa",
+      "villes": [
+        {
+          "id": "agadir",
+          "nom": "Agadir",
+          "latitude": 30.4278,
+          "longitude": -9.5981
+        },
+        {
+          "id": "inezgane",
+          "nom": "Inezgane",
+          "latitude": 30.3556,
+          "longitude": -9.5381
+        },
+        {
+          "id": "taroudant",
+          "nom": "Taroudant",
+          "latitude": 30.4703,
+          "longitude": -8.877
+        },
+        {
+          "id": "tiznit",
+          "nom": "Tiznit",
+          "latitude": 29.6974,
+          "longitude": -9.7316
+        },
+        {
+          "id": "ouled-teima",
+          "nom": "Ouled Teïma",
+          "latitude": 30.3947,
+          "longitude": -9.2097
+        }
+      ]
+    },
+    {
+      "id": "guelmim-oued-noun",
+      "nom": "Guelmim-Oued Noun",
+      "villes": [
+        {
+          "id": "guelmim",
+          "nom": "Guelmim",
+          "latitude": 28.987,
+          "longitude": -10.0574
+        },
+        {
+          "id": "tan-tan",
+          "nom": "Tan-Tan",
+          "latitude": 28.438,
+          "longitude": -11.1032
+        },
+        {
+          "id": "sidi-ifni",
+          "nom": "Sidi Ifni",
+          "latitude": 29.3797,
+          "longitude": -10.173
+        }
+      ]
+    },
+    {
+      "id": "laayoune-sakia-el-hamra",
+      "nom": "Laâyoune-Sakia El Hamra",
+      "villes": [
+        {
+          "id": "laayoune",
+          "nom": "Laâyoune",
+          "latitude": 27.1253,
+          "longitude": -13.1625
+        },
+        {
+          "id": "boujdour",
+          "nom": "Boujdour",
+          "latitude": 26.1253,
+          "longitude": -14.4847
+        },
+        {
+          "id": "smara",
+          "nom": "Smara",
+          "latitude": 26.7384,
+          "longitude": -11.6719
+        }
+      ]
+    },
+    {
+      "id": "dakhla-oued-ed-dahab",
+      "nom": "Dakhla-Oued Ed-Dahab",
+      "villes": [
+        {
+          "id": "dakhla",
+          "nom": "Dakhla",
+          "latitude": 23.6848,
+          "longitude": -15.958
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,265 @@
+{
+  "version": 1,
+  "specialites": [
+    {
+      "id": "medecine-generale",
+      "nom": "Médecine générale",
+      "nomPraticien": "Médecin généraliste",
+      "type": "GENERALIST",
+      "motsCles": "generaliste medecin de famille omnipraticien",
+      "populaire": true,
+      "icone": "stethoscope",
+      "ordre": 0
+    },
+    {
+      "id": "cardiologie",
+      "nom": "Cardiologie",
+      "nomPraticien": "Cardiologue",
+      "type": "SPECIALIST",
+      "motsCles": "cardiologue coeur cardiaque",
+      "populaire": true,
+      "icone": "heart",
+      "ordre": 1
+    },
+    {
+      "id": "dermatologie",
+      "nom": "Dermatologie",
+      "nomPraticien": "Dermatologue",
+      "type": "SPECIALIST",
+      "motsCles": "dermatologue peau",
+      "populaire": true,
+      "icone": "skin",
+      "ordre": 2
+    },
+    {
+      "id": "endocrinologie",
+      "nom": "Endocrinologie",
+      "nomPraticien": "Endocrinologue",
+      "type": "SPECIALIST",
+      "motsCles": "endocrinologue diabete thyroide hormones diabetologue",
+      "populaire": false,
+      "icone": "hormone",
+      "ordre": 3
+    },
+    {
+      "id": "gastro-enterologie",
+      "nom": "Gastro-entérologie",
+      "nomPraticien": "Gastro-entérologue",
+      "type": "SPECIALIST",
+      "motsCles": "gastro gastroenterologue digestif hepato",
+      "populaire": false,
+      "icone": "stomach",
+      "ordre": 4
+    },
+    {
+      "id": "gynecologie-obstetrique",
+      "nom": "Gynécologie-obstétrique",
+      "nomPraticien": "Gynécologue-obstétricien",
+      "type": "SPECIALIST",
+      "motsCles": "gynecologue gyneco obstetricien grossesse",
+      "populaire": true,
+      "icone": "woman",
+      "ordre": 5
+    },
+    {
+      "id": "hematologie",
+      "nom": "Hématologie",
+      "nomPraticien": "Hématologue",
+      "type": "SPECIALIST",
+      "motsCles": "hematologue sang",
+      "populaire": false,
+      "icone": "blood",
+      "ordre": 6
+    },
+    {
+      "id": "neurologie",
+      "nom": "Neurologie",
+      "nomPraticien": "Neurologue",
+      "type": "SPECIALIST",
+      "motsCles": "neurologue cerveau nerfs",
+      "populaire": true,
+      "icone": "brain",
+      "ordre": 7
+    },
+    {
+      "id": "neurochirurgie",
+      "nom": "Neurochirurgie",
+      "nomPraticien": "Neurochirurgien",
+      "type": "SPECIALIST",
+      "motsCles": "neurochirurgien colonne",
+      "populaire": false,
+      "icone": "brain",
+      "ordre": 8
+    },
+    {
+      "id": "nephrologie",
+      "nom": "Néphrologie",
+      "nomPraticien": "Néphrologue",
+      "type": "SPECIALIST",
+      "motsCles": "nephrologue rein reins dialyse",
+      "populaire": false,
+      "icone": "kidney",
+      "ordre": 9
+    },
+    {
+      "id": "oncologie",
+      "nom": "Oncologie",
+      "nomPraticien": "Oncologue",
+      "type": "SPECIALIST",
+      "motsCles": "oncologue cancer cancerologue",
+      "populaire": false,
+      "icone": "oncology",
+      "ordre": 10
+    },
+    {
+      "id": "ophtalmologie",
+      "nom": "Ophtalmologie",
+      "nomPraticien": "Ophtalmologue",
+      "type": "SPECIALIST",
+      "motsCles": "ophtalmologue ophtalmo yeux oeil vue",
+      "populaire": true,
+      "icone": "eye",
+      "ordre": 11
+    },
+    {
+      "id": "orl",
+      "nom": "ORL",
+      "nomPraticien": "Médecin ORL",
+      "type": "SPECIALIST",
+      "motsCles": "orl oto rhino laryngologie oreille nez gorge",
+      "populaire": false,
+      "icone": "ear",
+      "ordre": 12
+    },
+    {
+      "id": "orthopedie-traumatologie",
+      "nom": "Orthopédie-traumatologie",
+      "nomPraticien": "Orthopédiste-traumatologue",
+      "type": "SPECIALIST",
+      "motsCles": "orthopediste traumatologue os fracture",
+      "populaire": false,
+      "icone": "bone",
+      "ordre": 13
+    },
+    {
+      "id": "pediatrie",
+      "nom": "Pédiatrie",
+      "nomPraticien": "Pédiatre",
+      "type": "SPECIALIST",
+      "motsCles": "pediatre enfant enfants bebe",
+      "populaire": true,
+      "icone": "child",
+      "ordre": 14
+    },
+    {
+      "id": "pneumologie",
+      "nom": "Pneumologie",
+      "nomPraticien": "Pneumologue",
+      "type": "SPECIALIST",
+      "motsCles": "pneumologue poumons respiratoire asthme",
+      "populaire": false,
+      "icone": "lungs",
+      "ordre": 15
+    },
+    {
+      "id": "psychiatrie",
+      "nom": "Psychiatrie",
+      "nomPraticien": "Psychiatre",
+      "type": "SPECIALIST",
+      "motsCles": "psychiatre sante mentale",
+      "populaire": false,
+      "icone": "brain",
+      "ordre": 16
+    },
+    {
+      "id": "rhumatologie",
+      "nom": "Rhumatologie",
+      "nomPraticien": "Rhumatologue",
+      "type": "SPECIALIST",
+      "motsCles": "rhumatologue articulations",
+      "populaire": false,
+      "icone": "bone",
+      "ordre": 17
+    },
+    {
+      "id": "urologie",
+      "nom": "Urologie",
+      "nomPraticien": "Urologue",
+      "type": "SPECIALIST",
+      "motsCles": "urologue prostate",
+      "populaire": false,
+      "icone": "kidney",
+      "ordre": 18
+    },
+    {
+      "id": "chirurgie-generale",
+      "nom": "Chirurgie générale",
+      "nomPraticien": "Chirurgien généraliste",
+      "type": "SPECIALIST",
+      "motsCles": "chirurgien chirurgie",
+      "populaire": false,
+      "icone": "surgery",
+      "ordre": 19
+    },
+    {
+      "id": "chirurgie-cardiovasculaire",
+      "nom": "Chirurgie cardiovasculaire",
+      "nomPraticien": "Chirurgien cardiovasculaire",
+      "type": "SPECIALIST",
+      "motsCles": "chirurgien cardiaque vasculaire",
+      "populaire": false,
+      "icone": "heart",
+      "ordre": 20
+    },
+    {
+      "id": "chirurgie-viscerale",
+      "nom": "Chirurgie viscérale",
+      "nomPraticien": "Chirurgien viscéral",
+      "type": "SPECIALIST",
+      "motsCles": "chirurgien visceral digestif",
+      "populaire": false,
+      "icone": "surgery",
+      "ordre": 21
+    },
+    {
+      "id": "medecine-interne",
+      "nom": "Médecine interne",
+      "nomPraticien": "Interniste",
+      "type": "SPECIALIST",
+      "motsCles": "interniste",
+      "populaire": false,
+      "icone": "stethoscope",
+      "ordre": 22
+    },
+    {
+      "id": "medecine-physique-readaptation",
+      "nom": "Médecine physique et réadaptation",
+      "nomPraticien": "Médecin rééducateur",
+      "type": "SPECIALIST",
+      "motsCles": "reeducation readaptation mpr",
+      "populaire": false,
+      "icone": "rehab",
+      "ordre": 23
+    },
+    {
+      "id": "radiologie",
+      "nom": "Radiologie",
+      "nomPraticien": "Radiologue",
+      "type": "SPECIALIST",
+      "motsCles": "radiologue radio scanner irm echographie imagerie",
+      "populaire": false,
+      "icone": "scan",
+      "ordre": 24
+    },
+    {
+      "id": "anesthesie-reanimation",
+      "nom": "Anesthésie-réanimation",
+      "nomPraticien": "Anesthésiste-réanimateur",
+      "type": "SPECIALIST",
+      "motsCles": "anesthesiste reanimateur",
+      "populaire": false,
+      "icone": "anesthesia",
+      "ordre": 25
+    }
+  ]
+}

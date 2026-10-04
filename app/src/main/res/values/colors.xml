@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="brand_blue">#1F6FE0</color>
+    <color name="brand_blue_dark">#0F4FB0</color>
+    <color name="window_background">#FFFFFF</color>
+    <color name="marker_doctor">#1F6FE0</color>
+    <color name="marker_user">#1E8E5A</color>
+</resources>
