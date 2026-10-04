@@ -6,9 +6,9 @@ import kotlinx.coroutines.flow.Flow
 /**
  * Point d'accès unique aux données de l'annuaire.
  *
- * La V1 utilise [LocalDirectoryRepository] (Room + JSON embarqué). Pour passer
- * à une base distante, il suffit de fournir une autre implémentation de cette
- * interface (ex. synchronisation depuis une API vers Room) dans [com.medfind.maroc.AppContainer].
+ * La V2 utilise [LocalDirectoryRepository] : Room reste la source de lecture
+ * hors ligne et le repository synchronise les JSON publics de GitHub Raw avant
+ * de les importer dans Room. Aucune API GitHub n'est utilisée.
  */
 interface DirectoryRepository {
     /** Catalogue complet, mis à jour automatiquement. */

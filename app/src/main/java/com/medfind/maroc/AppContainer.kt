@@ -3,6 +3,7 @@ package com.medfind.maroc
 import android.content.Context
 import com.medfind.maroc.data.local.MedFindDatabase
 import com.medfind.maroc.data.repository.DirectoryRepository
+import com.medfind.maroc.data.remote.RemoteDataSource
 import com.medfind.maroc.data.repository.FavoritesRepository
 import com.medfind.maroc.data.repository.LocalDirectoryRepository
 import com.medfind.maroc.data.repository.LocalFavoritesRepository
@@ -15,12 +16,15 @@ class AppContainer(context: Context) {
     private val appContext = context.applicationContext
     private val database by lazy { MedFindDatabase.create(appContext) }
     private val prefs by lazy { appContext.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE) }
+    private val assetDataSource by lazy { AssetDataSource(appContext) }
+    private val remoteDataSource by lazy { RemoteDataSource(assetDataSource) }
 
     val directoryRepository: DirectoryRepository by lazy {
         LocalDirectoryRepository(
             dao = database.directoryDao(),
             favoriteDao = database.favoriteDao(),
-            assets = AssetDataSource(appContext),
+            assets = assetDataSource,
+            remote = remoteDataSource,
             prefs = prefs,
         )
     }

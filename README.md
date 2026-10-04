@@ -202,3 +202,27 @@ API → Room) et la brancher dans `AppContainer.kt`. Les écrans n'ont rien à c
   et le cahier des charges interdit d'afficher une fonction non implémentée.
 - Le ViewModel partagé conserve recherche, filtres, position et caméra de carte lors des rotations
   et des retours d'arrière-plan.
+
+
+## Synchronisation distante de la base des médecins
+
+La V2 peut vérifier automatiquement une base JSON publique hébergée sur GitHub Raw, sans utiliser l'API GitHub.
+
+Fichiers distants :
+- `app/src/main/assets/data/version.json`
+- `app/src/main/assets/data/doctors.json`
+- `app/src/main/assets/data/cities.json`
+- `app/src/main/assets/data/specialties.json`
+
+L'application conserve toujours une copie locale dans Room. Si Internet est indisponible, les données locales restent utilisables. Une erreur de téléchargement ne remplace jamais une base locale valide.
+
+### Mettre à jour les médecins sans publier une nouvelle APK
+
+1. Modifier `doctors.json`.
+2. Incrémenter la valeur `version` dans `version.json`.
+3. Si `cities.json` ou `specialties.json` change, modifier également leur `version`.
+4. Faire `git add`, `git commit` puis `git push`.
+5. Les applications installées détecteront la nouvelle version lors de leur prochaine initialisation avec Internet.
+
+La version distante doit être un entier positif et doit augmenter à chaque publication de données.
+

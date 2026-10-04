@@ -31,7 +31,29 @@ class AssetDataSource(private val context: Context) {
         val specialtiesJson = readJson("data/specialties.json")
         val citiesJson = readJson("data/cities.json")
         val doctorsJson = readJson("data/doctors.json")
+        return parseDataset(specialtiesJson, citiesJson, doctorsJson)
+    }
 
+    /**
+     * Parse un jeu de données téléchargé depuis la source distante.
+     * Le même parseur que pour les assets est utilisé afin que les deux formats
+     * restent strictement compatibles.
+     */
+    fun loadFromTexts(
+        specialtiesText: String,
+        citiesText: String,
+        doctorsText: String,
+    ): Dataset = parseDataset(
+        JSONObject(specialtiesText),
+        JSONObject(citiesText),
+        JSONObject(doctorsText),
+    )
+
+    private fun parseDataset(
+        specialtiesJson: JSONObject,
+        citiesJson: JSONObject,
+        doctorsJson: JSONObject,
+    ): Dataset {
         val specialties = parseSpecialties(specialtiesJson.optJSONArray("specialites"))
         val cities = parseCities(citiesJson.optJSONArray("regions"))
         val specialtyById = specialties.associateBy { it.id }

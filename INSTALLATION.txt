@@ -1,0 +1,21 @@
+MedFind Maroc V2 - synchronisation GitHub Raw
+
+Copier le contenu de ce patch dans le projet MedFindMaroc-GitHub existant en
+conservant le dossier .git du projet.
+
+Après copie :
+1. Vérifier le projet dans Android Studio.
+2. Compiler et tester l'application.
+3. Pousser les modifications avec Git.
+4. Sur GitHub, conserver ces fichiers publics :
+   - app/src/main/assets/data/version.json
+   - app/src/main/assets/data/doctors.json
+   - app/src/main/assets/data/cities.json
+   - app/src/main/assets/data/specialties.json
+
+Pour publier une nouvelle base distante :
+- modifier le JSON concerné ;
+- incrémenter version dans version.json ;
+- git add / git commit / git push.
+
+La synchronisation utilise GitHub Raw en HTTPS, pas l'API GitHub.

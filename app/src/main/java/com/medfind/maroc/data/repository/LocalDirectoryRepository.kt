@@ -10,6 +10,7 @@ import com.medfind.maroc.data.local.FavoriteDao
 import com.medfind.maroc.data.local.FavoriteEntity
 import com.medfind.maroc.data.local.SpecialtyEntity
 import com.medfind.maroc.data.seed.AssetDataSource
+import com.medfind.maroc.data.remote.RemoteDataSource
 import com.medfind.maroc.domain.model.Catalog
 import com.medfind.maroc.domain.model.City
 import com.medfind.maroc.domain.model.Doctor
@@ -26,6 +27,7 @@ class LocalDirectoryRepository(
     private val dao: DirectoryDao,
     private val favoriteDao: FavoriteDao,
     private val assets: AssetDataSource,
+    private val remote: RemoteDataSource,
     private val prefs: SharedPreferences,
 ) : DirectoryRepository {
 
@@ -44,6 +46,7 @@ class LocalDirectoryRepository(
 
     override suspend fun initialize(): DirectoryRepository.InitResult = withContext(Dispatchers.IO) {
         try {
+            // 1) Toujours garantir une base locale utilisable hors ligne.
             val dataset = assets.load()
             val installedVersion = prefs.getInt(KEY_DATA_VERSION, -1)
             if (installedVersion != dataset.version || dao.countDoctors() == 0) {
@@ -51,9 +54,31 @@ class LocalDirectoryRepository(
                 favoriteDao.deleteOrphans()
                 prefs.edit { putInt(KEY_DATA_VERSION, dataset.version) }
             }
+
+            // 2) Vérifier ensuite la base GitHub. Un échec réseau ne casse jamais
+            //    la base locale : Room reste la source de lecture de l'application.
+            val localRemoteVersion = prefs.getInt(KEY_REMOTE_DATA_VERSION, -1)
+            val sync = remote.checkAndDownload(localRemoteVersion)
+            if (sync.updated && sync.dataset != null && sync.remoteVersion != null) {
+                dao.replaceAll(
+                    sync.dataset.doctors,
+                    sync.dataset.specialties,
+                    sync.dataset.cities,
+                )
+                favoriteDao.deleteOrphans()
+                prefs.edit {
+                    putInt(KEY_DATA_VERSION, sync.dataset.version)
+                    putInt(KEY_REMOTE_DATA_VERSION, sync.remoteVersion)
+                }
+            } else if (sync.remoteVersion != null) {
+                // Même lorsqu'aucun téléchargement n'est nécessaire, mémoriser
+                // la version distante déjà connue.
+                prefs.edit { putInt(KEY_REMOTE_DATA_VERSION, sync.remoteVersion) }
+            }
+
             DirectoryRepository.InitResult.Ready
         } catch (e: Exception) {
-            Log.e(TAG, "Import des données impossible", e)
+            Log.e(TAG, "Initialisation des données impossible", e)
             val hasData = runCatching { dao.countDoctors() > 0 }.getOrDefault(false)
             if (hasData) DirectoryRepository.InitResult.ReadyWithStaleData
             else DirectoryRepository.InitResult.Failed
@@ -118,6 +143,7 @@ class LocalDirectoryRepository(
     private companion object {
         const val TAG = "DirectoryRepository"
         const val KEY_DATA_VERSION = "data_version"
+        const val KEY_REMOTE_DATA_VERSION = "remote_data_version"
     }
 }
 
