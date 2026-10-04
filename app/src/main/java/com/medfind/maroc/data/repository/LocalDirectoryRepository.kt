@@ -9,8 +9,8 @@ import com.medfind.maroc.data.local.DoctorEntity
 import com.medfind.maroc.data.local.FavoriteDao
 import com.medfind.maroc.data.local.FavoriteEntity
 import com.medfind.maroc.data.local.SpecialtyEntity
-import com.medfind.maroc.data.seed.AssetDataSource
 import com.medfind.maroc.data.remote.RemoteDataSource
+import com.medfind.maroc.data.seed.AssetDataSource
 import com.medfind.maroc.domain.model.Catalog
 import com.medfind.maroc.domain.model.City
 import com.medfind.maroc.domain.model.Doctor
@@ -38,58 +38,135 @@ class LocalDirectoryRepository(
     ) { doctorRows, specialtyRows, cityRows ->
         val specialties = specialtyRows.map { it.toDomain() }
         val cities = cityRows.map { it.toDomain() }
+
         val specialtyById = specialties.associateBy { it.id }
         val cityById = cities.associateBy { it.id }
-        val doctors = doctorRows.map { it.toDomain(specialtyById, cityById) }
-        Catalog(doctors, specialties, cities)
+
+        val doctors = doctorRows.map {
+            it.toDomain(specialtyById, cityById)
+        }
+
+        Catalog(
+            doctors = doctors,
+            specialties = specialties,
+            cities = cities,
+        )
     }.flowOn(Dispatchers.Default)
 
-    override suspend fun initialize(): DirectoryRepository.InitResult = withContext(Dispatchers.IO) {
-        try {
-            // 1) Toujours garantir une base locale utilisable hors ligne.
-            val dataset = assets.load()
-            val installedVersion = prefs.getInt(KEY_DATA_VERSION, -1)
-            if (installedVersion != dataset.version || dao.countDoctors() == 0) {
-                dao.replaceAll(dataset.doctors, dataset.specialties, dataset.cities)
-                favoriteDao.deleteOrphans()
-                prefs.edit { putInt(KEY_DATA_VERSION, dataset.version) }
-            }
+    override suspend fun initialize(): DirectoryRepository.InitResult =
+        withContext(Dispatchers.IO) {
+            try {
+                // 1) Toujours garantir une base locale utilisable hors ligne.
+                val dataset = assets.load()
 
-            // 2) Vérifier ensuite la base GitHub. Un échec réseau ne casse jamais
-            //    la base locale : Room reste la source de lecture de l'application.
-            val localRemoteVersion = prefs.getInt(KEY_REMOTE_DATA_VERSION, -1)
-            val sync = remote.checkAndDownload(localRemoteVersion)
-            if (sync.updated && sync.dataset != null && sync.remoteVersion != null) {
-                dao.replaceAll(
-                    sync.dataset.doctors,
-                    sync.dataset.specialties,
-                    sync.dataset.cities,
-                )
-                favoriteDao.deleteOrphans()
-                prefs.edit {
-                    putInt(KEY_DATA_VERSION, sync.dataset.version)
-                    putInt(KEY_REMOTE_DATA_VERSION, sync.remoteVersion)
+                val installedVersion =
+                    prefs.getInt(KEY_DATA_VERSION, -1)
+
+                if (
+                    installedVersion != dataset.version ||
+                    dao.countDoctors() == 0
+                ) {
+                    dao.replaceAll(
+                        dataset.doctors,
+                        dataset.specialties,
+                        dataset.cities,
+                    )
+
+                    favoriteDao.deleteOrphans()
+
+                    prefs.edit {
+                        putInt(
+                            KEY_DATA_VERSION,
+                            dataset.version,
+                        )
+                    }
                 }
-            } else if (sync.remoteVersion != null) {
-                // Même lorsqu'aucun téléchargement n'est nécessaire, mémoriser
-                // la version distante déjà connue.
-                prefs.edit { putInt(KEY_REMOTE_DATA_VERSION, sync.remoteVersion) }
-            }
 
-            DirectoryRepository.InitResult.Ready
-        } catch (e: Exception) {
-            Log.e(TAG, "Initialisation des données impossible", e)
-            val hasData = runCatching { dao.countDoctors() > 0 }.getOrDefault(false)
-            if (hasData) DirectoryRepository.InitResult.ReadyWithStaleData
-            else DirectoryRepository.InitResult.Failed
+                // 2) Vérifier ensuite la base GitHub.
+                // Un échec réseau ne casse jamais la base locale.
+                // Room reste la source de lecture de l'application.
+                val localRemoteVersion =
+                    prefs.getInt(KEY_REMOTE_DATA_VERSION, -1)
+
+                val sync =
+                    remote.checkAndDownload(localRemoteVersion)
+
+                // 3) Une nouvelle version distante a été téléchargée.
+                if (
+                    sync.updated &&
+                    sync.dataset != null &&
+                    sync.remoteVersion != null
+                ) {
+                    dao.replaceAll(
+                        sync.dataset.doctors,
+                        sync.dataset.specialties,
+                        sync.dataset.cities,
+                    )
+
+                    favoriteDao.deleteOrphans()
+
+                    prefs.edit {
+                        putInt(
+                            KEY_DATA_VERSION,
+                            sync.dataset.version,
+                        )
+
+                        putInt(
+                            KEY_REMOTE_DATA_VERSION,
+                            sync.remoteVersion,
+                        )
+
+                        putString(
+                            KEY_REMOTE_UPDATED_AT,
+                            sync.updatedAt,
+                        )
+                    }
+                }
+
+                // 4) Même lorsqu'aucun téléchargement n'est nécessaire,
+                // mémoriser la version distante et sa date.
+                else if (sync.remoteVersion != null) {
+                    prefs.edit {
+                        putInt(
+                            KEY_REMOTE_DATA_VERSION,
+                            sync.remoteVersion,
+                        )
+
+                        putString(
+                            KEY_REMOTE_UPDATED_AT,
+                            sync.updatedAt,
+                        )
+                    }
+                }
+
+                DirectoryRepository.InitResult.Ready
+
+            } catch (e: Exception) {
+                Log.e(
+                    TAG,
+                    "Initialisation des données impossible",
+                    e,
+                )
+
+                val hasData =
+                    runCatching {
+                        dao.countDoctors() > 0
+                    }.getOrDefault(false)
+
+                if (hasData) {
+                    DirectoryRepository.InitResult.ReadyWithStaleData
+                } else {
+                    DirectoryRepository.InitResult.Failed
+                }
+            }
         }
-    }
 
     private fun SpecialtyEntity.toDomain() = Specialty(
         id = id,
         name = nom,
         practitionerName = nomPraticien,
-        type = DoctorType.fromValue(type) ?: DoctorType.SPECIALIST,
+        type = DoctorType.fromValue(type)
+            ?: DoctorType.SPECIALIST,
         keywords = motsCles,
         popular = populaire,
         icon = icone,
@@ -109,9 +186,17 @@ class LocalDirectoryRepository(
         specialties: Map<String, Specialty>,
         cities: Map<String, City>,
     ): Doctor {
-        val specialty = specialiteId?.let { specialties[it] }
-        val city = villeId?.let { cities[it] }
-        val type = DoctorType.fromValue(typeMedecin) ?: specialty?.type ?: DoctorType.GENERALIST
+        val specialty =
+            specialiteId?.let { specialties[it] }
+
+        val city =
+            villeId?.let { cities[it] }
+
+        val type =
+            DoctorType.fromValue(typeMedecin)
+                ?: specialty?.type
+                ?: DoctorType.GENERALIST
+
         return Doctor(
             id = id,
             lastName = nom,
@@ -134,27 +219,53 @@ class LocalDirectoryRepository(
             verificationDate = dateVerification,
             verified = profilVerifie,
             searchIndex = DoctorSearch.buildSearchIndex(
-                prenom, nom, specialty?.name, specialty?.practitionerName, specialty?.keywords,
-                type.label, city?.name, city?.regionName, quartier, clinique,
+                prenom,
+                nom,
+                specialty?.name,
+                specialty?.practitionerName,
+                specialty?.keywords,
+                type.label,
+                city?.name,
+                city?.regionName,
+                quartier,
+                clinique,
             ),
         )
     }
 
     private companion object {
         const val TAG = "DirectoryRepository"
-        const val KEY_DATA_VERSION = "data_version"
-        const val KEY_REMOTE_DATA_VERSION = "remote_data_version"
+
+        const val KEY_DATA_VERSION =
+            "data_version"
+
+        const val KEY_REMOTE_DATA_VERSION =
+            "remote_data_version"
+
+        const val KEY_REMOTE_UPDATED_AT =
+            "remote_data_updated_at"
     }
 }
 
-class LocalFavoritesRepository(private val dao: FavoriteDao) : FavoritesRepository {
-    override val favoriteIds: Flow<List<String>> = dao.observeFavoriteIds()
+class LocalFavoritesRepository(
+    private val dao: FavoriteDao,
+) : FavoritesRepository {
 
-    override suspend fun add(doctorId: String) = withContext(Dispatchers.IO) {
-        dao.insert(FavoriteEntity(doctorId, System.currentTimeMillis()))
-    }
+    override val favoriteIds: Flow<List<String>> =
+        dao.observeFavoriteIds()
 
-    override suspend fun remove(doctorId: String) = withContext(Dispatchers.IO) {
-        dao.delete(doctorId)
-    }
+    override suspend fun add(doctorId: String) =
+        withContext(Dispatchers.IO) {
+            dao.insert(
+                FavoriteEntity(
+                    doctorId,
+                    System.currentTimeMillis(),
+                )
+            )
+        }
+
+    override suspend fun remove(doctorId: String) =
+        withContext(Dispatchers.IO) {
+            dao.delete(doctorId)
+        }
 }
