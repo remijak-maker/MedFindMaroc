@@ -1,5 +1,5 @@
 ﻿{
-    "version":  4,
+    "version":  5,
     "jeuDeDonnees":  "Tأ©touan â€” donnأ©es issues de sources publiques, non vأ©rifiأ©es par MedFind Maroc",
     "medecins":  [
                      {
@@ -440,28 +440,6 @@
                          "whatsapp":  null,
                          "source":  "MarocMedecin.com",
                          "dateVerification":  "2026-10-03",
-                         "profilVerifie":  false
-                     },
-                     {
-                         "id":  "SYNC-TEST-001",
-                         "nom":  "MedecinTest",
-                         "prenom":  "Synchronisation",
-                         "specialite":  "medecine-generale",
-                         "typeMedecin":  "GENERALIST",
-                         "ville":  "tetouan",
-                         "quartier":  "TEST",
-                         "adresse":  "Adresse de test synchronisation GitHub",
-                         "telephone":  "0500000099",
-                         "telephoneSecondaire":  null,
-                         "latitude":  null,
-                         "longitude":  null,
-                         "horaires":  "Test synchronisation",
-                         "description":  "Medecin fictif utilise uniquement pour tester la synchronisation distante GitHub.",
-                         "clinique":  "TEST SYNC",
-                         "siteWeb":  null,
-                         "whatsapp":  null,
-                         "source":  "SYNC_TEST",
-                         "dateVerification":  "2026-10-04",
                          "profilVerifie":  false
                      }
                  ]
